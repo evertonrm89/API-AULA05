@@ -155,7 +155,7 @@ Faça uma função nome_do_filme_por_id que recebe a id de
 um filme e retorna o seu nome.
 '''
 def nome_do_filme_por_id(id_filme):
-    pass #implemente!
+    pass #implemente
 
 '''
 Faça uma função ano_do_filme_por_id que recebe a id de
