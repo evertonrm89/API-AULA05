@@ -1,6 +1,15 @@
 
 'PAREI NO MINUTO 45 AULA 05'
 
+'''
+https://sites.google.com/faculdadeimpacta.com.br/dam-p5
+
+https://www.omdbapi.com/
+
+https://www.omdbapi.com/?s=star%20wars&apikey=9950f2de
+https://www.omdbapi.com/?apikey=9950f2de&type=game&i=tt0433458
+
+'''
 
 
 
