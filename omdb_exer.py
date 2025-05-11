@@ -109,14 +109,20 @@ itens (pode ser filme, jogo, série ou o que for) batem com
 uma determinada busca.
 '''
 def busca_qtd_total(texto_buscar):
-    pass #implemente!
+    url = f"http://www.omdbapi.com/?apikey={api_key}&s={texto_buscar}"
+    pedido = requests.get(url) #conectar na URL
+    dicionario_do_pedido = pedido.json() #transformo a string que eu recebi num dicionário de python
+    return dicionario_do_pedido['totalResults']
 
 '''
 Faça uma função busca_qtd_filmes que retorna quantos
 filmes batem com uma determinada busca.
 '''
 def busca_qtd_filmes(texto_buscar):
-    pass #implemente!
+    url = f"http://www.omdbapi.com/?apikey={api_key}&s={texto_buscar}&type=movie"
+    pedido = requests.get(url) #conectar na URL
+    dicionario_do_pedido = pedido.json() #transformo a string que eu recebi num dicionário de python
+    return dicionario_do_pedido['totalResults']
 
 
 '''
@@ -124,7 +130,10 @@ Faça uma função busca_qtd_jogos que retorna quantos
 jogos batem com uma determinada busca.
 '''
 def busca_qtd_jogos(texto_buscar):
-    pass #implemente!
+    url = f"http://www.omdbapi.com/?apikey={api_key}&s={texto_buscar}&type=game"
+    pedido = requests.get(url) #conectar na URL
+    dicionario_do_pedido = pedido.json() #transformo a string que eu recebi num dicionário de python
+    return dicionario_do_pedido['totalResults']
 
 '''
 Agora, vamos aprender a ver os detalhes de um filme.
