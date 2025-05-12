@@ -155,14 +155,20 @@ Faça uma função nome_do_filme_por_id que recebe a id de
 um filme e retorna o seu nome.
 '''
 def nome_do_filme_por_id(id_filme):
-    pass #implemente
+    url = f"http://www.omdbapi.com/?apikey={api_key}&i={id_filme}"
+    pedido = requests.get(url) #conectar na URL
+    dicionario_do_pedido = pedido.json() #transformo a string que eu recebi num dicionário de python
+    return dicionario_do_pedido['Title']
 
 '''
 Faça uma função ano_do_filme_por_id que recebe a id de
 um filme e retorna o seu ano de lançamento.
 '''
 def ano_do_filme_por_id(id_filme):
-    pass #implemente!
+    url = f"http://www.omdbapi.com/?apikey={api_key}&i={id_filme}"
+    pedido = requests.get(url) #conectar na URL
+    dicionario_do_pedido = pedido.json() #transformo a string que eu recebi num dicionário de python
+    return dicionario_do_pedido['Year']
 
 '''
 Peguemos vários dados de um filme de uma vez.
@@ -179,7 +185,12 @@ O dicionário deve ter as seguintes chaves:
 E os dados devem ser preenchidos baseado nos dados do site.
 '''
 def dicionario_do_filme_por_id(id_filme):
-    pass #implemente!
+    url = f"http://www.omdbapi.com/?apikey={api_key}&i={id_filme}"
+    pedido = requests.get(url) #conectar na URL
+    dicionario_do_pedido = pedido.json()
+    dic_filme = dict(ano = dicionario_do_pedido["Year"], nome = dicionario_do_pedido["Title"], 
+                     diretor = dicionario_do_pedido["Director"], genero = dicionario_do_pedido["Genre"])
+    return dic_filme
 
 '''
 Voltando para a busca...
@@ -192,14 +203,47 @@ A sua resposta deve ser uma lista, cada filme representado por
 um dicionário. cada dicionario deve conter os campos
 'nome' (valor Title da resposta) e 'ano' (valor Year da resposta).
 '''
-def busca_filmes(texto_buscar):
-    pass #implemente!
+def busca_filmes(texto_buscar, pagina):
+    
+    url = f"http://www.omdbapi.com/?apikey={api_key}&s={texto_buscar}&page={pagina}"
+    pedido = requests.get(url) #conectar na URL
+    dic_buscar = pedido.json()
+    
+    lista_filmes = dic_buscar['Search']
+    lista_resposta = []
+    for filme in lista_filmes:
+        dic = {}
+        dic['nome'] = filme['Title']
+        dic['ano'] = filme['Year']
+        lista_resposta.append(dic)
+    
+    return lista_resposta
 
 
 '''
 Faça uma função busca_filmes_grande que, dada uma busca, retorna
 os VINTE primeiros filmes que batem com a busca.
 '''
-def busca_filmes_grande(texto_buscar):
-    pass #implemente!
+def busca_filmes_grande(texto_buscar, qtd_paginas):
+    
+    lista_resposta = []
+    for i in range(qtd_paginas):
+        
+        i = i+1
+        #print(i)
+        
+        url = f"http://www.omdbapi.com/?apikey={api_key}&s={texto_buscar}&page={i}"
+        pedido = requests.get(url) #conectar na URL
+        dic_buscar = pedido.json()
+        
+        lista_filmes = dic_buscar['Search']
+        
+        for filme in lista_filmes:
+            dic = {}
+            #dic['N'] = i
+            dic['nome'] = filme['Title']
+            dic['ano'] = filme['Year']
+            lista_resposta.append(dic)
+    
+    return lista_resposta
 
